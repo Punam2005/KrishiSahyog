@@ -1,4 +1,3 @@
-84% of storage used … If you run out of space, you can't save to Drive or back up Google Photos. Get 30 GB of storage for ₹59 ₹0 for 1 month.
 # KrishiSahyog- Hyperspectral Crop Monitoring System
 
 A comprehensive AI-powered solution for monitoring crop health, soil conditions, and pest risks using hyperspectral imaging technology.
