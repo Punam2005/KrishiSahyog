@@ -309,6 +309,11 @@ For questions or support:
 ---
 
 **KrishiSahyog** - Empowering precision agriculture with hyperspectral intelligence 🌱📊
-<img width="616" height="434" alt="image" src="https://github.com/user-attachments/assets/65f13310-cc23-4547-a362-abf75a41b12b" />
-<img width="606" height="434" alt="image" src="https://github.com/user-attachments/assets/c4883a6c-a9f3-46c5-803a-c23fc83f8fe9" />
+<img width="1890" height="847" alt="image" src="https://github.com/user-attachments/assets/ef83db6a-25ac-4c97-aaff-1b703cc8a52a" />
+<img width="1897" height="864" alt="image" src="https://github.com/user-attachments/assets/fe5d923f-23ad-43fa-9f97-d77c84a77a23" />
+<img width="1890" height="862" alt="image" src="https://github.com/user-attachments/assets/431a2b3e-5e61-4d8c-9c61-4773dadce8c5" />
+<img width="1877" height="857" alt="image" src="https://github.com/user-attachments/assets/769d90ab-7c72-4c0d-bcae-8e0f978cc867" />
+<img width="1881" height="853" alt="image" src="https://github.com/user-attachments/assets/3109b424-fbaf-4bb1-ba60-0f2542d55f65" />
+
+
 
