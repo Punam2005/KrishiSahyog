@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krishi Sahyog</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-left">
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="logo">
+                <i class="fas fa-leaf"></i>
+                <h1>Krishi Sahyog</h1>
+            </div>
+        </div>
+        <div class="header-right">
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+            <div class="notifications">
+                <button class="notification-btn">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-count">3</span>
+                </button>
+            </div>
+            <div class="user-profile">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23228B22'/%3E%3Ctext x='16' y='20' text-anchor='middle' fill='white' font-family='Arial' font-size='14'%3EAU%3C/text%3E%3C/svg%3E" alt="User" class="profile-image">
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <nav class="sidebar" id="sidebar">
+        <ul class="nav-menu">
+            <li class="nav-item active">
+                <a href="#dashboard" class="nav-link" data-section="dashboard">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#fields" class="nav-link" data-section="fields">
+                    <i class="fas fa-map"></i>
+                    <span>Field Management</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#health" class="nav-link" data-section="health">
+                    <i class="fas fa-heartbeat"></i>
+                    <span>Health Analysis</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#pests" class="nav-link" data-section="pests">
+                    <i class="fas fa-bug"></i>
+                    <span>Pest Detection</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#soil" class="nav-link" data-section="soil">
+                    <i class="fas fa-seedling"></i>
+                    <span>Soil Monitoring</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#reports" class="nav-link" data-section="reports">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Reports</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+            <span id="breadcrumbText">Dashboard / Overview</span>
+        </nav>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="content-section active">
+            <div class="page-header">
+                <h2>Dashboard Overview</h2>
+                <button class="btn btn--primary">
+                    <i class="fas fa-upload"></i>
+                    Upload Images
+                </button>
+            </div>
+
+            <!-- KPI Cards -->
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="kpi-content">
+                        <h3>Total Fields</h3>
+                        <div class="kpi-value">3</div>
+                        <div class="kpi-change positive">+1 this month</div>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon health">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="kpi-content">
+                        <h3>Avg Health Score</h3>
+                        <div class="kpi-value">81%</div>
+                        <div class="kpi-change positive">+3% from last week</div>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon warning">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="kpi-content">
+                        <h3>Active Alerts</h3>
+                        <div class="kpi-value">4</div>
+                        <div class="kpi-change negative">+2 today</div>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon success">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <div class="kpi-content">
+                        <h3>Recent Scans</h3>
+                        <div class="kpi-value">12</div>
+                        <div class="kpi-change positive">This week</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Row -->
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <h3>Health Trends</h3>
+                    <div class="chart-container">
+                        <canvas id="healthTrendChart"></canvas>
+                    </div>
+                </div>
+                <div class="dashboard-card">
+                    <h3>Weather Conditions</h3>
+                    <div class="weather-widget">
+                        <div class="weather-current">
+                            <div class="weather-temp">24°C</div>
+                            <div class="weather-desc">Partly Cloudy</div>
+                        </div>
+                        <div class="weather-details">
+                            <div class="weather-item">
+                                <i class="fas fa-tint"></i>
+                                <span>Humidity: 68%</span>
+                            </div>
+                            <div class="weather-item">
+                                <i class="fas fa-wind"></i>
+                                <span>Wind: 12 km/h</span>
+                            </div>
+                            <div class="weather-item">
+                                <i class="fas fa-cloud-rain"></i>
+                                <span>Rainfall: 2.3mm</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Activity Feed -->
+            <div class="dashboard-card">
+                <h3>Recent Activity</h3>
+                <div class="activity-feed">
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <div class="activity-content">
+                            <div class="activity-title">New hyperspectral scan completed</div>
+                            <div class="activity-desc">North Field A - Health score: 87%</div>
+                            <div class="activity-time">2 hours ago</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon warning">
+                            <i class="fas fa-bug"></i>
+                        </div>
+                        <div class="activity-content">
+                            <div class="activity-title">Pest alert detected</div>
+                            <div class="activity-desc">Corn Borer in South Field B - High severity</div>
+                            <div class="activity-time">4 hours ago</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon success">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="activity-content">
+                            <div class="activity-title">Analysis completed</div>
+                            <div class="activity-desc">East Field C - Excellent health detected</div>
+                            <div class="activity-time">1 day ago</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Field Management Section -->
+        <section id="fields" class="content-section">
+            <div class="page-header">
+                <h2>Field Management</h2>
+                <button class="btn btn--primary" id="uploadBtn">
+                    <i class="fas fa-plus"></i>
+                    Add New Field
+                </button>
+            </div>
+
+            <!-- Upload Area -->
+            <div class="upload-section">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-content">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <h3>Upload Hyperspectral Images</h3>
+                        <p>Drag and drop your hyperspectral images here or click to browse</p>
+                        <input type="file" id="fileInput" accept=".tiff,.tif,.hdr,.raw" multiple>
+                        <button class="btn btn--outline">Choose Files</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fields Grid -->
+            <div class="fields-grid">
+                <div class="field-card" data-field-id="1">
+                    <div class="field-image">
+                        <div class="field-placeholder">
+                            <i class="fas fa-image"></i>
+                        </div>
+                        <div class="field-status status--success">Healthy</div>
+                    </div>
+                    <div class="field-info">
+                        <h4>North Field A</h4>
+                        <div class="field-details">
+                            <span><i class="fas fa-seedling"></i> Corn</span>
+                            <span><i class="fas fa-ruler-combined"></i> 25.3 hectares</span>
+                        </div>
+                        <div class="field-meta">
+                            <span>Health Score: <strong>87%</strong></span>
+                            <span>Last Scan: Sep 12, 2024</span>
+                        </div>
+                        <div class="field-actions">
+                            <button class="btn btn--sm btn--outline">View Details</button>
+                            <button class="btn btn--sm btn--secondary">Analyze</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field-card" data-field-id="2">
+                    <div class="field-image">
+                        <div class="field-placeholder">
+                            <i class="fas fa-image"></i>
+                        </div>
+                        <div class="field-status status--warning">Attention</div>
+                    </div>
+                    <div class="field-info">
+                        <h4>South Field B</h4>
+                        <div class="field-details">
+                            <span><i class="fas fa-seedling"></i> Wheat</span>
+                            <span><i class="fas fa-ruler-combined"></i> 18.7 hectares</span>
+                        </div>
+                        <div class="field-meta">
+                            <span>Health Score: <strong>65%</strong></span>
+                            <span>Last Scan: Sep 11, 2024</span>
+                        </div>
+                        <div class="field-actions">
+                            <button class="btn btn--sm btn--outline">View Details</button>
+                            <button class="btn btn--sm btn--secondary">Analyze</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field-card" data-field-id="3">
+                    <div class="field-image">
+                        <div class="field-placeholder">
+                            <i class="fas fa-image"></i>
+                        </div>
+                        <div class="field-status status--success">Excellent</div>
+                    </div>
+                    <div class="field-info">
+                        <h4>East Field C</h4>
+                        <div class="field-details">
+                            <span><i class="fas fa-seedling"></i> Soybeans</span>
+                            <span><i class="fas fa-ruler-combined"></i> 31.2 hectares</span>
+                        </div>
+                        <div class="field-meta">
+                            <span>Health Score: <strong>92%</strong></span>
+                            <span>Last Scan: Sep 10, 2024</span>
+                        </div>
+                        <div class="field-actions">
+                            <button class="btn btn--sm btn--outline">View Details</button>
+                            <button class="btn btn--sm btn--secondary">Analyze</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Health Analysis Section -->
+        <section id="health" class="content-section">
+            <div class="page-header">
+                <h2>Health Analysis</h2>
+                <select class="form-control" style="width: 200px;">
+                    <option>North Field A</option>
+                    <option>South Field B</option>
+                    <option>East Field C</option>
+                </select>
+            </div>
+
+            <div class="analysis-grid">
+                <div class="analysis-main">
+                    <div class="image-viewer">
+                        <div class="image-placeholder">
+                            <i class="fas fa-search-plus"></i>
+                            <p>Hyperspectral Analysis View</p>
+                        </div>
+                        <div class="image-controls">
+                            <button class="btn btn--sm btn--outline">
+                                <i class="fas fa-search-plus"></i>
+                            </button>
+                            <button class="btn btn--sm btn--outline">
+                                <i class="fas fa-search-minus"></i>
+                            </button>
+                            <button class="btn btn--sm btn--outline">
+                                <i class="fas fa-arrows-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="spectral-chart">
+                        <h4>Spectral Signature Analysis</h4>
+                        <div class="chart-container">
+                            <canvas id="spectralChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="analysis-sidebar">
+                    <div class="health-metrics">
+                        <h4>Health Metrics</h4>
+                        
+                        <div class="metric-item">
+                            <div class="metric-header">
+                                <span>Chlorophyll Content</span>
+                                <span class="metric-value good">78%</span>
+                            </div>
+                            <div class="metric-bar">
+                                <div class="metric-fill" style="width: 78%"></div>
+                            </div>
+                        </div>
+
+                        <div class="metric-item">
+                            <div class="metric-header">
+                                <span>Water Stress</span>
+                                <span class="metric-value warning">23%</span>
+                            </div>
+                            <div class="metric-bar">
+                                <div class="metric-fill warning" style="width: 23%"></div>
+                            </div>
+                        </div>
+
+                        <div class="metric-item">
+                            <div class="metric-header">
+                                <span>Nutrient Deficiency</span>
+                                <span class="metric-value good">15%</span>
+                            </div>
+                            <div class="metric-bar">
+                                <div class="metric-fill good" style="width: 15%"></div>
+                            </div>
+                        </div>
+
+                        <div class="metric-item">
+                            <div class="metric-header">
+                                <span>Disease Risk</span>
+                                <span class="metric-value good">12%</span>
+                            </div>
+                            <div class="metric-bar">
+                                <div class="metric-fill good" style="width: 12%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recommendations">
+                        <h4>AI Recommendations</h4>
+                        <div class="recommendation-list">
+                            <div class="recommendation-item">
+                                <i class="fas fa-lightbulb"></i>
+                                <div>
+                                    <strong>Irrigation Adjustment</strong>
+                                    <p>Increase watering in zones showing water stress indicators.</p>
+                                </div>
+                            </div>
+                            <div class="recommendation-item">
+                                <i class="fas fa-flask"></i>
+                                <div>
+                                    <strong>Nutrient Management</strong>
+                                    <p>Apply nitrogen fertilizer to improve chlorophyll levels.</p>
+                                </div>
+                            </div>
+                            <div class="recommendation-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <div>
+                                    <strong>Preventive Care</strong>
+                                    <p>Monitor for early disease symptoms in highlighted areas.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pest Detection Section -->
+        <section id="pests" class="content-section">
+            <div class="page-header">
+                <h2>Pest Detection & Alerts</h2>
+                <div class="alert-summary">
+                    <span class="alert-count high">1 High</span>
+                    <span class="alert-count medium">2 Medium</span>
+                    <span class="alert-count low">0 Low</span>
+                </div>
+            </div>
+
+            <div class="pest-dashboard">
+                <div class="alert-cards">
+                    <div class="alert-card high">
+                        <div class="alert-header">
+                            <div class="alert-severity">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <span>High Severity</span>
+                            </div>
+                            <div class="alert-date">Sep 11, 2024</div>
+                        </div>
+                        <div class="alert-content">
+                            <h4>Corn Borer Detected</h4>
+                            <p><strong>Field:</strong> South Field B</p>
+                            <p><strong>Confidence:</strong> 95%</p>
+                            <div class="alert-recommendation">
+                                <i class="fas fa-medkit"></i>
+                                <span>Immediate treatment recommended</span>
+                            </div>
+                        </div>
+                        <div class="alert-actions">
+                            <button class="btn btn--sm btn--primary">Take Action</button>
+                            <button class="btn btn--sm btn--outline">View Details</button>
+                        </div>
+                    </div>
+
+                    <div class="alert-card medium">
+                        <div class="alert-header">
+                            <div class="alert-severity">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <span>Medium Severity</span>
+                            </div>
+                            <div class="alert-date">Sep 12, 2024</div>
+                        </div>
+                        <div class="alert-content">
+                            <h4>Aphids Detected</h4>
+                            <p><strong>Field:</strong> North Field A</p>
+                            <p><strong>Confidence:</strong> 82%</p>
+                            <div class="alert-recommendation">
+                                <i class="fas fa-eye"></i>
+                                <span>Monitor closely, consider beneficial insects</span>
+                            </div>
+                        </div>
+                        <div class="alert-actions">
+                            <button class="btn btn--sm btn--primary">Take Action</button>
+                            <button class="btn btn--sm btn--outline">View Details</button>
+                        </div>
+                    </div>
+
+                    <div class="alert-card medium">
+                        <div class="alert-header">
+                            <div class="alert-severity">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <span>Medium Severity</span>
+                            </div>
+                            <div class="alert-date">Sep 11, 2024</div>
+                        </div>
+                        <div class="alert-content">
+                            <h4>Leaf Rust Detected</h4>
+                            <p><strong>Field:</strong> South Field B</p>
+                            <p><strong>Confidence:</strong> 73%</p>
+                            <div class="alert-recommendation">
+                                <i class="fas fa-spray-can"></i>
+                                <span>Apply fungicide treatment</span>
+                            </div>
+                        </div>
+                        <div class="alert-actions">
+                            <button class="btn btn--sm btn--primary">Take Action</button>
+                            <button class="btn btn--sm btn--outline">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pest-analytics">
+                    <div class="pest-chart-container">
+                        <h4>Pest Occurrence Trends</h4>
+                        <div class="chart-container">
+                            <canvas id="pestTrendChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Soil Monitoring Section -->
+        <section id="soil" class="content-section">
+            <div class="page-header">
+                <h2>Soil Monitoring</h2>
+                <div class="soil-status">
+                    <span class="status--success">Overall Status: Good</span>
+                </div>
+            </div>
+
+            <div class="soil-dashboard">
+                <div class="soil-metrics">
+                    <div class="soil-metric-card">
+                        <div class="soil-metric-icon">
+                            <i class="fas fa-vial"></i>
+                        </div>
+                        <div class="soil-metric-content">
+                            <h4>pH Level</h4>
+                            <div class="soil-value">6.8</div>
+                            <div class="soil-range">Optimal (6.5-7.0)</div>
+                        </div>
+                    </div>
+
+                    <div class="soil-metric-card">
+                        <div class="soil-metric-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <div class="soil-metric-content">
+                            <h4>Organic Matter</h4>
+                            <div class="soil-value">4.2%</div>
+                            <div class="soil-range">Good (3-6%)</div>
+                        </div>
+                    </div>
+
+                    <div class="soil-metric-card">
+                        <div class="soil-metric-icon">
+                            <i class="fas fa-tint"></i>
+                        </div>
+                        <div class="soil-metric-content">
+                            <h4>Moisture Content</h4>
+                            <div class="soil-value">67%</div>
+                            <div class="soil-range">Adequate</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="soil-charts">
+                    <div class="soil-chart">
+                        <h4>Nutrient Composition</h4>
+                        <div class="chart-container">
+                            <canvas id="nutrientChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="soil-recommendations">
+                        <h4>Fertilizer Recommendations</h4>
+                        <div class="recommendation-list">
+                            <div class="fertilizer-rec">
+                                <div class="fertilizer-icon">
+                                    <i class="fas fa-seedling"></i>
+                                </div>
+                                <div class="fertilizer-content">
+                                    <h5>Nitrogen (N)</h5>
+                                    <p>Current: 85% | Target: 90%</p>
+                                    <span class="rec-action">Apply 20kg/ha of urea</span>
+                                </div>
+                            </div>
+
+                            <div class="fertilizer-rec">
+                                <div class="fertilizer-icon">
+                                    <i class="fas fa-bolt"></i>
+                                </div>
+                                <div class="fertilizer-content">
+                                    <h5>Phosphorus (P)</h5>
+                                    <p>Current: 72% | Target: 80%</p>
+                                    <span class="rec-action">Apply 15kg/ha of DAP</span>
+                                </div>
+                            </div>
+
+                            <div class="fertilizer-rec">
+                                <div class="fertilizer-icon">
+                                    <i class="fas fa-fire"></i>
+                                </div>
+                                <div class="fertilizer-content">
+                                    <h5>Potassium (K)</h5>
+                                    <p>Current: 68% | Target: 75%</p>
+                                    <span class="rec-action">Apply 10kg/ha of MOP</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reports Section -->
+        <section id="reports" class="content-section">
+            <div class="page-header">
+                <h2>Reports & Analytics</h2>
+                <div class="report-actions">
+                    <input type="date" class="form-control" id="startDate" value="2024-09-01">
+                    <input type="date" class="form-control" id="endDate" value="2024-09-13">
+                    <button class="btn btn--primary">
+                        <i class="fas fa-download"></i>
+                        Export Report
+                    </button>
+                </div>
+            </div>
+
+            <div class="reports-dashboard">
+                <div class="report-summary">
+                    <div class="summary-card">
+                        <h4>Total Scans</h4>
+                        <div class="summary-value">24</div>
+                        <div class="summary-period">Last 30 days</div>
+                    </div>
+                    <div class="summary-card">
+                        <h4>Avg Health Score</h4>
+                        <div class="summary-value">81%</div>
+                        <div class="summary-change positive">+5% vs last month</div>
+                    </div>
+                    <div class="summary-card">
+                        <h4>Issues Resolved</h4>
+                        <div class="summary-value">15</div>
+                        <div class="summary-change positive">+3 this week</div>
+                    </div>
+                    <div class="summary-card">
+                        <h4>ROI Improvement</h4>
+                        <div class="summary-value">12%</div>
+                        <div class="summary-change positive">Yield increase</div>
+                    </div>
+                </div>
+
+                <div class="report-charts">
+                    <div class="report-chart">
+                        <h4>Field Comparison</h4>
+                        <div class="chart-container">
+                            <canvas id="fieldComparisonChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="report-chart">
+                        <h4>Yield Prediction</h4>
+                        <div class="chart-container">
+                            <canvas id="yieldPredictionChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal for Field Details -->
+    <div class="modal hidden" id="fieldModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Field Details</h3>
+                <button class="modal-close" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="field-detail-grid">
+                    <div class="detail-item">
+                        <label>Field Name:</label>
+                        <span id="modalFieldName">North Field A</span>
+                    </div>
+                    <div class="detail-item">
+                        <label>Crop Type:</label>
+                        <span id="modalCropType">Corn</span>
+                    </div>
+                    <div class="detail-item">
+                        <label>Area:</label>
+                        <span id="modalArea">25.3 hectares</span>
+                    </div>
+                    <div class="detail-item">
+                        <label>Location:</label>
+                        <span id="modalLocation">40.7128, -74.0060</span>
+                    </div>
+                    <div class="detail-item">
+                        <label>Health Score:</label>
+                        <span id="modalHealthScore">87%</span>
+                    </div>
+                    <div class="detail-item">
+                        <label>Last Scan:</label>
+                        <span id="modalLastScan">Sep 12, 2024</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn--outline">Edit Field</button>
+                <button class="btn btn--primary">Start Analysis</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
